@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="../Nivel III/styles.css">
+    <title>Nivel III</title>
+
+</head>
+<body>
+    
+    <form class="calculator" name="calc">
+        <input class="valor" type="text" name="valor1" id="#valor1" placeholder="INGRESA EL PRIMER VALOR" autocomplete="off">
+        <input class="valor" type="text" name="valor2" id="#valor2" placeholder="INGRESA EL SEGUNDO VALOR" autocomplete="off">
+        <p class="resultado valor" id="#result"><p>
+        <input class="ops" type="button" value="SUMAR" onclick="`${calculator.calc('sumar',document.getElementById('#valor1'),document.getElementById('#valor2'))}`">
+        <input class="ops" type="button" value="RESTAR" onclick="`${calculator.calc('restar',document.getElementById('#valor1'),document.getElementById('#valor2'))}`">
+        <input class="ops" type="button" value="MULTIPLICAR" onclick="`${calculator.calc('multiplicar',document.getElementById('#valor1'),document.getElementById('#valor2'))}`">
+        <input class="ops" type="button" value="DIVIDIR" onclick="`${calculator.calc('dividir',document.getElementById('#valor1'),document.getElementById('#valor2'))}`">
+        <button class="ops reset" onclick="reset();"><p>Reset Operation</p></button>
+    </form>
+
+    <script>
+        var calculator = {
+            result:0,
+            calc: function (operador,valor1,valor2){
+                valor1 = parseInt(valor1.value)
+                valor2 = parseInt(valor2.value)
+            switch (operador){
+                case 'sumar':
+                    this.result = valor1+valor2;
+                    return document.getElementById('#result').innerHTML=valor1+valor2;
+                case 'restar':
+                    this.result =  valor1-valor2;
+                    return document.getElementById('#result').innerHTML=valor1-valor2;
+                case 'multiplicar':
+                    this.result =  valor1*valor2;
+                    return document.getElementById('#result').innerHTML=valor1*valor2;
+                case 'dividir':
+                    if (valor2===0){
+                        this.result = valor1/"0"
+                        return document.getElementById('#result').innerHTML="Not posible";
+                    }
+                    this.result =  valor1/valor2
+                    return document.getElementById('#result').innerHTML=valor1/valor2;
+                }
+            }
+        }
+        function reset(){
+            document.getElementById('calculator').reset();
+        }
+    </script>
+</body>
+</html>
